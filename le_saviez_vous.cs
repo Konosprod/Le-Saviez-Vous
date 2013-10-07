@@ -46,15 +46,16 @@ namespace WindowsFormsApplication1
         private string obtenirURL(string src)
         {
             string u = src;//variable renvoyée
-            string s = "/wiki/[a-zA-Z0-9_%]*\\\" title=\\\"[^\n]*\\\">Lire la suite";//Regex Bloc du dernier lien
-            string s2 = "/wiki/[a-zA-Z0-9_%]*\\\"";//Regex extraction du lien pur
+            string test = src;
+            string s = "/wiki/[^\n]*\\\" title=\\\"[^\n]*\\\">Lire la suite";//Regex Bloc du dernier lien
+            string s2 = "/wiki/[^\n]*\\\" t";//Regex extraction du lien pur
             Regex r = new Regex(s);
             Regex r2 = new Regex(s2);
             Match m = r.Match(u);
             Match m2 = r2.Match(m.ToString());
             
             u = m2.ToString();
-            u = u.Remove(u.Length - 1);
+            u = u.Remove(u.Length - 3);
             u = "http://fr.wikipedia.org" + u;
 
             return u;
@@ -92,7 +93,7 @@ namespace WindowsFormsApplication1
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if (fontDialog1.ShowDialog() != DialogResult.Cancel)
+            if (fontDialog1.ShowDialog() != DialogResult.Cancel) ;
             {
                 richTextBox1.Font = fontDialog1.Font;
             }
